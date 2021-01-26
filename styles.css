@@ -1,0 +1,125 @@
+body {
+    margin : 0;
+    padding : 0;
+    font-family: Open Sans,Arial,sans-serif;
+    background : white;
+    height : 100vh;
+    overflow: hidden;
+
+}
+
+.center {
+    position : absolute;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%, -50%);
+    width : 400px;
+    background : linear-gradient(90deg, #0000ff, #ffa76c );
+    border-radius : 10px;
+    color: white;
+    box-shadow: 0 0 2em grey;
+}
+
+.center h1{
+    text-align: center;
+    padding: 0 0 20px 0;
+}
+
+.center form{
+    padding: 0 40px;
+    box-sizing : border-box;
+}
+
+form .txt_field{
+    position: relative;
+    border-bottom: 2px solid grey;
+    margin: 30px 0;
+}
+
+.txt_field input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    color: white;
+}
+
+.txt_field label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: grey;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.txt_field span::before{
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: gray;
+    transition: .5s;
+}
+
+.txt_field input:focus ~label,
+.txt_field input:valid ~label{
+    top: -5px;
+    color: white;
+}
+
+.txt_field input:focus ~label,
+.txt_field input:valid ~label{
+    width: 100%;
+}
+
+input[type="submit"]{
+    width: 100%;
+    height: 50px;
+    margin: 0 0 10px 0;
+    background: #ffa76c;
+    border: 0;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+input[type="submit"]:hover{
+    color: #ffa76c;
+    background: white;
+    border-color: #ffa76c;
+    transition: .5s;
+}
+
+.info{
+    text-align: center;
+    font-size: 14px;
+}
+
+.signup_link{
+    margin: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    color: gray;
+}
+
+.signup_link a{
+    text-decoration: none;
+    color: #0000ff;
+}
+
+.signup_link a:hover{
+    color: white;
+    transition: .5s;
+
+}
