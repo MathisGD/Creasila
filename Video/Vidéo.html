@@ -10,51 +10,58 @@
 
 
     </head>
-    <body>
+<body>
         
-        <a href="../login/acceuil.html">Page d'acceuil</a>
-        <div class="center">
-            
-            <h1>Vidéo 1</h1>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/tVKaN_H35xs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            
-            <div class="info">
-                <p>Vidéo 1 : Comment travailler en agile</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, sint consequuntur, dicta corrupti obcaecati quas laudantium dolor delectus quisquam voluptatibus ad molestiae neque similique? Sed esse praesentium sint! Consectetur, porro.</p>
-                
+    <a href="../login/acceuil.html">
+    <img loading="lazy"  src="https://www.creasila.com/wp-content/uploads/2020/06/LOGO_DEGRADE_unmarge-e1596918940552.png" alt="" height="auto" width="auto" class="wp-image-536">
+    </a>
+
+
+<div class="center">
+  <h1>Vidéo 1</h1>
+
+        <div class="video-responsive">
+            <iframe width="560" height="315"  src="https://www.youtube.com/embed/tVKaN_H35xs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <title>QCM avec cases à cocher</title>
-        <script language="JavaScript">
-        <!-- cacher code
-        function test(nom,n) {
-         var rep=true;
-         for (i=0; i<n; i++) { 
-          if (nom[i].value==1 && nom[i].checked==false) rep=false;
-          if (nom[i].value==0 && nom[i].checked==true) rep=false;
-         }
-         return rep;
-        }
-        //fin du script. -->
-        </script>
-        
-       
-       <h2>Verifiez que vous avez bien compris </h2>
-       <hr>
-       <form name="qcm1">
-       <b>Question :</b><br>
-       Quelles sont les meilleurs listes BDE 2021 ?<br>
-       <b>Réponses :</b>
-       <br><input type="CHECKBOX" name="choix" value="1">Hunters
-       <br><input type="CHECKBOX" name="choix" value="0">Thunder
-       <br><input type="CHECKBOX" name="choix" value="0">Aucune
-       <br><input type="CHECKBOX" name="choix" value="1">Naga
-       <br><br>
-       <input type="BUTTON" name="bouton" value="Vérifier" onclick="if (test(choix,4)) {alert(&#39;Bonne réponse.&#39;)} 
-                 else {alert(&#39;Réponse fausse.&#39;)}">
-       
-       </form>
-       <hr>
+        <div class="info">
+          <div class="Description">
+            <h3>Vidéo 1 : Comment travailler en agile</h3>
+          </div>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, sint consequuntur, dicta corrupti obcaecati quas laudantium dolor delectus quisquam voluptatibus ad molestiae neque similique? Sed esse praesentium sint! Consectetur, porro.</p>
+          <title>QCM avec cases à cocher</title>
+          <script language="JavaScript">
+                <!-- cacher code
+                function test(nom,n) {
+                var rep=true;
+                for (i=0; i<n; i++) { 
+                    if (nom[i].value==1 && nom[i].checked==false) rep=false;
+                    if (nom[i].value==0 && nom[i].checked==true) rep=false;
+                }
+                return rep;
+                }
+                //fin du script
+            </script>
+          <hr>
+          <h2>Verifiez que vous avez bien compris </h2>
+          <form name="qcm1">
+            <h3> Quelles sont les meilleurs listes BDE 2021 ?</h3>
+            <b>Réponses :</b> <br>
+            <input type="CHECKBOX" name="choix" value="1">
+            Hunters <br>
+            <input type="CHECKBOX" name="choix" value="0">
+            Thunder <br>
+            <input type="CHECKBOX" name="choix" value="0">
+            Aucune <br>
+            <input type="CHECKBOX" name="choix" value="1">
+            Naga <br>
+            <br>
+              <div class="alert">
+              <input type="BUTTON" class="bouton" value="Vérifier" onclick="if (test(choix,4)) {alert('Bonne réponse BRAVO !')} 
+                 else {alert('Mauvaise réponse')}">
+                 </div>
+          </form>
         </div>
+</div> 
 
     </body>
 </html>
