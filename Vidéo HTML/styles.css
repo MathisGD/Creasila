@@ -15,15 +15,12 @@
 	left:5px;
 	top:5px;
 }
-#ei0_31_0_80 { 
-	width:263px;
-	height:95px;
+#ei0_31_0_80 a img { 
+	width:auto;
+	height:120px;
 	position:absolute;
 	left:0px;
 	top:0px;
-	background-image:url(images/e0x0.png);
-	background-repeat:no-repeat;
-	background-size:cover;
 }
 #e0_32 { 
 	color:rgba(0, 0, 255, 1);
