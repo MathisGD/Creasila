@@ -1,0 +1,13 @@
+@media all and (max-width: 780px)
+{
+  .center{
+    color: red;
+  }
+}
+
+@media all and (min-width: 780px)
+{
+  .center{
+    color: blue
+  }
+}
