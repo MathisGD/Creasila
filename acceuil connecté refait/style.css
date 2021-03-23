@@ -1,13 +1,107 @@
 @media all and (max-width: 780px)
 {
-  .center{
-    color: red;
+  #body{
+    color: white
+  }
+  #center{
+    width: 100%
+  }
+  #bouton_acceuil{
+    width:100px;
   }
 }
 
 @media all and (min-width: 780px)
 {
-  .center{
-    color: blue
+  #body{
+    color: white
+  }
+
+  #premiere_barre{
+    height: 100px;
+    width: 100%;
+    border: solid;
+  }
+
+  #bouton_acceuil{
+    max-height: 100%;
+  }
+
+  #logo a img{
+    max-height: 100px;
+  }
+
+  #icone_compte {
+  	width:186px;
+  	height:100%;
+  	position:relative;
+    right: 10px;
+  }
+  #e0_71 {
+  	color:rgba(0, 0, 255, 1);
+  	width:auto;
+  	height:25px;
+  	position:absolute;
+  	left:85px;
+  	top:36px;
+  	font-family:Bebas Neue;
+  	text-align:left;
+  	font-size:24px;
+  	letter-spacing:0;
+  }
+  #e0_71 a{
+  	color:rgba(0, 0, 255, 1);
+  	width:auto;
+  	height:35px;
+  	position:absolute;
+  	top:36px;
+  	font-family:Bebas Neue;
+  	text-align:left;
+  	font-size:24px;
+  	letter-spacing:0;
+  	text-decoration:none;
+  }
+  #e0_71 a:hover{
+  	color:rgba(255, 167.00000524520874, 108.00000116229057, 1);
+  	width:auto;
+  	height:25px;
+  	position:absolute;
+  	top:36px;
+  	font-family:Bebas Neue;
+  	text-align:left;
+  	font-size:24px;
+  	letter-spacing:0;
+  	text-decoration:none;
+  }
+  #e0_72 {
+  	box-shadow:3px 3px 4px rgba(0, 0, 0, 0.501960813999176);
+  	border-radius:500px;
+  	background-color:rgba(255, 255, 255, 1);
+  	border:2px solid rgba(155.00000596046448, 155.00000596046448, 155.00000596046448, 1);
+  	width:68px;
+  	height:69px;
+  	position:absolute;
+  	left:0px;
+  	top:1px;
+  }
+  #e0_73 {
+  	color:rgba(0, 0, 255, 1);
+  	width:50px;
+  	height:154px;
+  	position:absolute;
+  	left:9px;
+  	top:0px;
+  	font-family:Bebas Neue;
+  	text-align:left;
+  	font-size:64px;
+  	letter-spacing:0;
+  }
+
+  #center{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    background: white;
+    width: 780px
   }
 }
