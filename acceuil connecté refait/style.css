@@ -1,4 +1,4 @@
-@media all and (max-width: 780px)
+@media all and (max-width: 600px)
 {
   #body{
     color: white
@@ -11,20 +11,21 @@
   }
 }
 
-@media all and (min-width: 780px)
+@media all and (min-width: 600px)
 {
   #body{
-    color: white
+    color: white;
   }
 
   #premiere_barre{
     height: 100px;
     width: 100%;
-    border: solid;
+    background: none;
   }
 
   #bouton_acceuil{
     max-height: 100%;
+    float: left;
   }
 
   #logo a img{
@@ -32,59 +33,23 @@
   }
 
   #icone_compte {
-  	width:186px;
-  	height:100%;
-  	position:relative;
-    right: 10px;
+    position: relative;
+    float: right;
+    vertical-align: middle;
   }
-  #e0_71 {
-  	color:rgba(0, 0, 255, 1);
-  	width:auto;
-  	height:25px;
-  	position:absolute;
-  	left:85px;
-  	top:36px;
-  	font-family:Bebas Neue;
-  	text-align:left;
-  	font-size:24px;
-  	letter-spacing:0;
-  }
-  #e0_71 a{
-  	color:rgba(0, 0, 255, 1);
-  	width:auto;
-  	height:35px;
-  	position:absolute;
-  	top:36px;
-  	font-family:Bebas Neue;
-  	text-align:left;
-  	font-size:24px;
-  	letter-spacing:0;
-  	text-decoration:none;
-  }
-  #e0_71 a:hover{
-  	color:rgba(255, 167.00000524520874, 108.00000116229057, 1);
-  	width:auto;
-  	height:25px;
-  	position:absolute;
-  	top:36px;
-  	font-family:Bebas Neue;
-  	text-align:left;
-  	font-size:24px;
-  	letter-spacing:0;
-  	text-decoration:none;
-  }
-  #e0_72 {
+
+  #cercle {
   	box-shadow:3px 3px 4px rgba(0, 0, 0, 0.501960813999176);
   	border-radius:500px;
   	background-color:rgba(255, 255, 255, 1);
   	border:2px solid rgba(155.00000596046448, 155.00000596046448, 155.00000596046448, 1);
-  	width:68px;
+  	width:69px;
   	height:69px;
-  	position:absolute;
-  	left:0px;
-  	top:1px;
+  	position:relative;
+    line-height: 69px;
   }
-  #e0_73 {
+
+  #nom_compte {
   	color:rgba(0, 0, 255, 1);
   	width:50px;
   	height:154px;
@@ -92,16 +57,73 @@
   	left:9px;
   	top:0px;
   	font-family:Bebas Neue;
-  	text-align:left;
-  	font-size:64px;
+  	text-align:center;
+  	font-size:30px;
   	letter-spacing:0;
   }
 
+  #barre_menus{
+    padding: 0;
+    margin: 0;
+    text-align: right;
+  }
+
+  #barre_menus li{
+    display: inline;
+    list-style: none;
+  }
+
+  #barre_menus a{
+    display: inline-block;
+    margin: 0 30px;
+  }
+
   #center{
-    position: absolute;
+    position: relative;
     left: 50%;
+    top: 50%;
     transform: translate(-50%);
     background: white;
-    width: 780px
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  .barre_bas{
+    background: #2d2d2d;
+    background-blend-mode: multiply;
+    background-origin: padding-box;
+    background-size: auto;
+    box-sizing: border-box;
+    display: block;
+    margin: 0 0 0 0;
+    color: rgb(187, 187, 187);
+    text-align: center;
+
+  }
+
+  #centre_barre_bas{
+    position: relative;
+    width: 80%;
+    max-width: 1080px;
+    margin: auto;
+  }
+
+  .bottom-nav {
+    padding: 15px 0;
+  }
+
+  .bottom-nav li{
+    font-weight: 600;
+    display: inline-block;
+    font-size: 14px;
+    padding-right: 22px;
+  }
+
+  .bottom-nav a{
+    text-decoration: none;
+    color: inherit;
+    font-family: "Source sans pro", Helvetica;
+    font-size: 14px;
+    font-weight: 500;
   }
 }
