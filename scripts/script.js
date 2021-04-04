@@ -1,13 +1,9 @@
-$(function(){
-  $("[data-toggle=popover]").popover({
-      html : true,
-      content: function() {
-        var content = $(this).attr("data-popover-content");
-        return $(content).children(".popover-body").html();
-      },
-      title: function() {
-        var title = $(this).attr("data-popover-content");
-        return $(title).children(".popover-heading").html();
-      }
+$(document).ready(function() {
+  $("#account").popover({
+      placement: 'bottom',
+      html: 'true',
+      title : '<span class="text-info"><strong>title</strong></span>'+
+              '<button type="button" id="close" class="close" onclick="$(&quot;#example&quot;).popover(&quot;hide&quot;);">&times;</button>',
+      content : 'test'
   });
-});
+});  
