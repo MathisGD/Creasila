@@ -3,150 +3,57 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/style.css">
+    <!--link rel="stylesheet" href="../css/style.css"-->
 
-    <!--style>
-      body {background: #E5E5E5; }
-    </style-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
   </head>
 
   <body>
-
-    <div id="premiere_barre">
-
-      <div id="bouton_acceuil">
-        <div id="logo"> <!-- e0_45-->
-          <a href="index.html"> <img src="../img/e0x0.png" alt="logo" /> </a>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="../img/e0x0.png" alt="" height="24" class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+          </ul>
         </div>
-      </div>
 
-      <div id="icone_compte"> <!-- div id="e0_70"-->
-
-        <div id="cercle"> <!-- div  id="e0_72" rond sous la personne-->
-          <div id="nom_compte"> <!--span  id="e0_73">SR</span-->
-            SR
+        <ul class="navbar-nav mr-auto profilepic">
+          <a class="btn btn-primary" data-placement="top" data-popover-content="#a1" data-toggle="popover" data-trigger="focus" href="#" tabindex="0">
+            <img src="../img/profilepic.jpeg" alt="" height="40" style="border-radius:50%">
+          </a>
+          <div class="hidden" id="a1">
+            <div class="popover-heading">
+              Léo Sajas
+            </div>
+            <div class="popover-body">
+              <button>test</button>
+            </div>
           </div>
-        </div>
-
+        </ul>
       </div>
+    </nav>
 
+
+    <div class="container-sm">
+      <h1>Hello</h1>
     </div>
 
-    <div id="barre_menus">
-      <ul id="liste_liens">
-        <li><a href="#">A</a></li>
-        <li><a href="#">B</a></li>
-        <li><a href="#">C</a></li>
-        <li><a href="#">D</a></li>
-      </ul>
-    </div>
-
-    <div id="barre_menus"> <!-- e0_46-->
-      <div id="ei0_46_0_82">
-        <div  id="ei0_46_0_83">
-       </div>
-       <span  id="ei0_46_0_84">Barre de menus</span>
-       <div  id="ei0_46_0_85">
-
-       </div>
-       <div  id="ei0_46_0_86">
-
-       </div>
-       <div  id="ei0_46_0_87">
-
-       </div>
-       <input  id="ei0_46_0_88" type="text" placeholder="Ecrivez quelquechose">
-     </div>
-     <input type="submit" id="ei0_46_0_89" value="Rechercher">
-    </div>
-
-
-    <div id="center">
-
-
-
-     <div id="e0_47">
-       <div  id="e0_48">
-
-       </div>
-       <div  id="e0_49">
-
-       </div>
-       <span  id="e0_50">derniers badges obtenus</span>
-         <span  id="e0_51">Mes formations encore en cours… blablabla encore blablabla et encore blabla </span>
-         <div  id="e0_52">
-
-         </div>
-         <div  id="e0_53">
-
-         </div>
-         <div  id="e0_54">
-
-         </div>
-         <div  id="e0_55">
-
-         </div>
-         <div  id="e0_56">
-
-         </div>
-         <div  id="Vidéo1">
-           <video controls src="Vidéo1.ogv"></video>
-         </div>
-         <div  id="Vidéo2">
-           <video controls src="Vidéo2.ogv"></video>
-         </div>
-         <div  id="e0_59">
-
-         </div>
-       </div>
-       <div  id="e0_60">
-
-       </div>
-       <div  id="e0_61">
-
-       </div>
-       <div id="e0_62">
-         <div id="ei0_62_0_91">
-           <div  id="ei0_62_0_92">
-
-           </div>
-           <span  id="ei0_62_0_93">MENTIONS LEGALES ETC…</span>
-         </div>
-       </div>
-       <div id="e0_63">
-         <div  id="e0_64">
-
-         </div>
-         <div  id="Vidéo3">
-           <video controls src="Vidéo3.ogv"></video>
-         </div>
-         <div  id="Vidéo4">
-           <video controls src="Vidéo6.ogv"></video>
-         </div>
-
-
-         <span  id="e0_69">Recommandations : Ce que vous allez sûrement aimer… bla blabla blabla bla</span>
-       </div>
-
-
-       </div>
-     </div>
-
-     <div class="barre_bas">
-       <div id="centre_barre_bas">
-         <ul id="liste_liens" class="bottom-nav">
-           <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-107">
-             <a href="https://www.creasila.com/mentions-legales/">Mentions Légales</a>
-           </li>
-           <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-109">
-             <a href="https://www.creasila.com/rgpd/">Politique de protection des données</a>
-           </li>
-           <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-102">
-             <a href="https://www.creasila.com/politique-de-cookies-ue/">Politique de cookies (UE)</a>
-           </li>
-         </ul>
-       </div>
-     </div>
-
-
-   </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    <script src="../scripts/script.js"></script>
+  </body>
