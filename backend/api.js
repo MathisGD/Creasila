@@ -8,6 +8,7 @@ const router = express.Router();
 	const passport = require('passport');
 	//encryption
 	const bcrypt = require('bcryptjs');
+	const saltRounds = 10;
 
 //API : 
 
@@ -34,26 +35,30 @@ router.post('/users/register',(req,res)=>{
 		errors.push({ msg: 'Le mot de passe est trop court'});
 	}
 
-	if(errors.length > 0){
+	if(errors.length> 0){
 		res.send(errors);
+		res.redirect("/login");
 
 	} else {
-		res.send('pass');
 		User.findOne({ mail: mail })
 			.then(user => {
 				if(user){
 					errors.push({ msg: "L'utilisateur existe déjà" });
+					res.redirect("/login");
 				} else {
 					const newUser = new User({ first, last, mail, mdp });
 					//hashage du mdp
-					bcrypt.hash(newUser.mdp, salt, (err,hash)=>{
-						if(err) throw err;
-						newUser.mdp = hash;
-					})
+					bcrypt.genSalt(saltRounds, (err, salt) => {
+						bcrypt.hash(newUser.mdp, salt, (err,hash)=>{
+							if(err) throw err;
+							newUser.mdp = hash;
+						});
+					});
 					newUser.save()
 						.then(user => {
 							console.log(newUser);
-							res.send('Nouvel utilisateur enregistré');					})
+							res.redirect("/login");	
+						})
 						.catch(err => console.log(err));
 
 				}
@@ -64,8 +69,8 @@ router.post('/users/register',(req,res)=>{
 //login
 router.post('/user/login', (req, res, next) => {
 	passport.authenticate('local', {
-		//successRedirect: '/homepage',
-		//failureRedirect: '/register',
+		successRedirect: '/homepage',
+		failureRedirect: '/login',
 		failureFlash: true
 
 	})(req, res, next);
@@ -74,7 +79,7 @@ router.post('/user/login', (req, res, next) => {
 router.get('/user/logout',(req, res)=>{
 	req.logout();
 	//req.flash('','Tu es déconnecté.e')
-	//res.redirect('login');
+	res.redirect('/login');
 });
 
 //export api module

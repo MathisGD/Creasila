@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <title>Page de connexion</title>
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+    <body>
+        <div class="center">
+            <h1>Connexion</h1>
+            <div class="info">
+                <p>Entrez l'adresse email associée à votre compte</p>
+            </div>
+            <form method="post" action="/user/login">
+                <div class="txt_field">
+                    <input type="text" required>
+                    <label>Email</label>
+                </div>
+                <div class="txt_field">
+                    <input name="mdp" type="password" required>
+                    <label>Mot de passe</label>
+                </div>
+                <input type="submit" value="Connexion">
+            </form>
+            <div class="signup_link">
+                Pas encore inscrit ? <a href="/register">S'inscrire ici</a>
+            </div>
+        </div>
+    </body>
+</html>

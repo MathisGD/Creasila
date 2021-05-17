@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title>Création de compte</title>
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+    <body>
+        <div class="center">
+            <h1>Création de compte</h1>
+            <form method="post" action="api/users/register">
+                <div class="txt_field">
+                    <input name="first" type="text" required>
+                    <label>Prénom</label>
+                </div>
+                <div class="txt_field">
+                    <input name="last" type="text" required>
+                    <label>Nom</label>
+                </div>
+                <div class="txt_field">
+                    <input name="mail" type="text" required>
+                    <label>Email</label>
+                </div>
+                <div class="txt_field">
+                    <input name= "mdp" type="password" required>
+                    <label>Mot de passe</label>
+                </div>
+                <input type="submit" value="Créer le compte">
+            </form>
+            <div class="signin_link">
+                Déjà inscrit ? <a href="/login">Se connecter ici</a>
+            </div>
+        </div>
+    </body>
+</html>

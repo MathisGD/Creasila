@@ -15,7 +15,7 @@ const url = 'mongodb://localhost:27017/creasila';
 	//passport
 	const passport = require('passport');
 	require('./passport')(passport);
-	const { ensureAuthenticated } = require('./auth');
+	const ensureAuthentification = require('./auth');
 	//json format
 	const bodyParser = require('body-parser');
 	app.use(bodyParser.json());
@@ -59,6 +59,7 @@ app.set('view engine', 'ejs');
 
 
 //Routing
+const path = require('path');
 //routing api
 const api = require('./api');
 app.use('/api',api);
@@ -67,18 +68,16 @@ app.use('/api',api);
 app.get('/', (req, res) => res.redirect("/login"));
 
 //routing protégée 
-app.get('/protected', ensureAuthentificated, (req, res) => res.sendFile(__dirname + ""));
+app.get('/protected', ensureAuthentification.ensureAuthentificated, (req, res) => res.sendFile(path.resolve('')));
 
 //register page
-app.get('/register', (req,res)=> res.sendFile(__dirname + "/../html/signup.html"));
+app.get('/register', (req,res)=> res.sendFile(path.resolve('../html/signup.html')));
 
 //login page
-app.get('/login', (req,res) => res.sendFile(__dirname + "/../html/login.html"));
+app.get('/login', (req,res) => res.sendFile(path.resolve('../html/login.html')));
 
 //rooting css
-app.get('/css', (req, res) => {
-  res.sendFile(__dirname+"/../css/style.css");
-});
+app.get('/css', (req, res) => res.sendFile(path.resolve('../css/style.css')));
 
 //Running server
 app.listen(PORT, () => {
