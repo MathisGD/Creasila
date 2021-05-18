@@ -1,6 +1,6 @@
 //IMPORT LIBRARIES 
 //Server
-const express= require('express');
+const express = require('express');
 const app = express();
 const router = express.Router();
 //Middlewares 
@@ -36,31 +36,42 @@ router.post('/users/register',(req,res)=>{
 	}
 
 	if(errors.length> 0){
-		res.send(errors);
-		res.redirect("/login");
+		// res.send(errors);
+		let err_s=errors[0].msg;
+		for(let i=1;i<errors.length;i++){
+			err_s+=" et "+errors[i].msg;
+		};
+		console.log(errors);
+		req.flash('error_msg',err_s);
+		res.redirect("/register");
 
 	} else {
 		User.findOne({ mail: mail })
 			.then(user => {
 				if(user){
 					errors.push({ msg: "L'utilisateur existe déjà" });
+					req.flash('error_msg',errors[0].msg);
 					res.redirect("/login");
 				} else {
 					const newUser = new User({ first, last, mail, mdp });
 					//hashage du mdp
 					bcrypt.genSalt(saltRounds, (err, salt) => {
-						bcrypt.hash(newUser.mdp, salt, (err,hash)=>{
+						bcrypt.hash(newUser.mdp, salt, (err,hash) => {
 							if(err) throw err;
 							newUser.mdp = hash;
+							newUser.save()
+								.then(user => {
+									console.log(newUser);
+									req.flash('success_msg','Ton compte a été crée');
+									res.redirect("/login");	
+								})
+								.catch(err => { 
+									console.log(err);
+									req.flash('error_msg',err);
+									res.redirect("/register");
+								});
 						});
 					});
-					newUser.save()
-						.then(user => {
-							console.log(newUser);
-							res.redirect("/login");	
-						})
-						.catch(err => console.log(err));
-
 				}
 			});
 	}
@@ -78,7 +89,7 @@ router.post('/user/login', (req, res, next) => {
 //logout
 router.get('/user/logout',(req, res)=>{
 	req.logout();
-	//req.flash('','Tu es déconnecté.e')
+	req.flash('success_msg','Tu es déconnecté.e')
 	res.redirect('/login');
 });
 

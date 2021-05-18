@@ -5,12 +5,24 @@
         <meta charset="UTF-8">
 
         <title>Création de compte</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="/css">
 
     </head>
     <body>
         <div class="center">
             <h1>Création de compte</h1>
+            <div class="txt_field">
+                <% if(success_msg!='') { %>
+                    <div class="txt_field">
+                        <%= success_msg %>
+                    </div>
+                <% } %>
+                <% if(error_msg!='') { %>
+                    <div class="txt_field">
+                        <%= error_msg %>
+                    </div>
+                <% } %>
+            </div>
             <form method="post" action="api/users/register">
                 <div class="txt_field">
                     <input name="first" type="text" required>

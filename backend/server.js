@@ -4,10 +4,12 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8000;
 //Rendering
-const expressLoayouts = require('express-ejs-layouts');
+const expressLayouts = require('express-ejs-layouts');
 //Database
 const mongoose = require('mongoose');
 const url = 'mongodb://localhost:27017/creasila';
+//Routing
+const path = require('path');
 //Middlewares 
 	//sessions 
 	const flash = require('connect-flash');
@@ -20,6 +22,7 @@ const url = 'mongodb://localhost:27017/creasila';
 	const bodyParser = require('body-parser');
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({ extended: false }));
+
 
 //SERVER : 
 
@@ -53,28 +56,41 @@ mongoose.connect(
 );
 
 //Rendering ejs
-app.use(expressLoayouts);
+app.use(expressLayouts);
 app.set('view engine', 'ejs');
+//app.use(express.static(path.join(__dirname, "/../views")));
+//app.set('/views',path.resolve('/../views'));
+//app.engine('html', require('ejs').renderFile);
+
+
 
 
 
 //Routing
-const path = require('path');
 //routing api
 const api = require('./api');
 app.use('/api',api);
 
-//routing homepage
+//routing initial à modifier en fonction du log
 app.get('/', (req, res) => res.redirect("/login"));
 
 //routing protégée 
 app.get('/protected', ensureAuthentification.ensureAuthentificated, (req, res) => res.sendFile(path.resolve('')));
 
+//test rooting
+app.get("/homepage", (req,res) => res.sendFile(path.resolve("./views/homepage.html")));
+
 //register page
-app.get('/register', (req,res)=> res.sendFile(path.resolve('../html/signup.html')));
+app.get('/register', (req,res)=> {
+	app.set('layout','./signup');
+	res.render('signup');
+});
 
 //login page
-app.get('/login', (req,res) => res.sendFile(path.resolve('../html/login.html')));
+app.get('/login', (req,res) => {
+	app.set('layout','./login');
+	res.render('login');
+});
 
 //rooting css
 app.get('/css', (req, res) => res.sendFile(path.resolve('../css/style.css')));

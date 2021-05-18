@@ -5,18 +5,30 @@
 
         <meta charset="UTF-8">
         <title>Page de connexion</title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="/css">
 
     </head>
     <body>
         <div class="center">
             <h1>Connexion</h1>
+            <div class="txt_field">
+                <% if(success_msg!='') { %>
+                    <div class="txt_field">
+                        <%= success_msg %>
+                    </div>
+                <% } %>
+                <% if(error_msg!='') { %>
+                    <div class="txt_field">
+                        <%= error_msg %>
+                    </div>
+                <% } %>
+            </div>
             <div class="info">
                 <p>Entrez l'adresse email associée à votre compte</p>
             </div>
             <form method="post" action="/user/login">
                 <div class="txt_field">
-                    <input type="text" required>
+                    <input name="mail" type="text" required>
                     <label>Email</label>
                 </div>
                 <div class="txt_field">

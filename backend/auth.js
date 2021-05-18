@@ -4,4 +4,6 @@ exports.ensureAuthentificated = function(req, res, next){
 		}
 		req.flash('error_msg', 'Il faut être connecté pour voir cette page');
 		res.redirect('/login');
+
+		
 	}
