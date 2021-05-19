@@ -78,18 +78,16 @@ router.post('/users/register',(req,res)=>{
 });
 
 //login
-router.post('/user/login', (req, res, next) => {
-	passport.authenticate('local', {
+router.post('/user/login',
+	passport.authenticate('local',{
 		successRedirect: '/homepage',
 		failureRedirect: '/login',
-		failureFlash: true
+		failureFlash: true }));
 
-	})(req, res, next);
-});
 //logout
 router.get('/user/logout',(req, res)=>{
 	req.logout();
-	req.flash('success_msg','Tu es déconnecté.e')
+	req.flash('success_msg','Tu es déconnecté.e');
 	res.redirect('/login');
 });
 

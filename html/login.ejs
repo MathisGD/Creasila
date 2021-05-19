@@ -12,6 +12,11 @@
         <div class="center">
             <h1>Connexion</h1>
             <div class="txt_field">
+                <% if(error!='') { %>
+                    <div class="txt_field">
+                        <%= error %>
+                    </div>
+                <% } %>
                 <% if(success_msg!='') { %>
                     <div class="txt_field">
                         <%= success_msg %>
@@ -26,7 +31,7 @@
             <div class="info">
                 <p>Entrez l'adresse email associée à votre compte</p>
             </div>
-            <form method="post" action="/user/login">
+            <form method="post" action="api/user/login">
                 <div class="txt_field">
                     <input name="mail" type="text" required>
                     <label>Email</label>

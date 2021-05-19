@@ -13,25 +13,37 @@ const User = require('./model/usersSchema');
 
 module.exports = function(passport) {
 	passport.use(
-		new LocalStrategy({ usernameField: 'mail' }, (mail, mdp, done) => {
-			User.findOne({ mail: mail })
-				.then(user => {
-					if(!user) {
-						return done(null, false, { message: "L'utilisateur n'existe pas" });
-					}
-
-					bcrypt.compare(mdp, user.mdp, (err,isMatch) => {
-						if(err) throw err;
-
-						if(isMatch) {
-							return done(null, user);
-						} else {
-							return done(null, flase, { message: "Mauvais mot de passe"});
+		new LocalStrategy({
+				usernameField: 'mail',
+				passwordField: 'mdp'},
+				(mail, mdp, done) => {
+					User.findOne({ mail: mail })
+					.then(user => {
+						let msg="";
+						if(!user) {
+							msg += "L'utilisateur n'existe pas";
+							return done(null, false, { message: msg });
+						}else{
+							bcrypt.compare(mdp, user.mdp, (err,isMatch) => {
+								if(err) throw err;
+								if(isMatch) {
+									msg += "Utilisateur connecté, bienvenu "+user.first;
+									return done(null, user, { message : msg});
+								} else {
+									msg += "Mauvais mot de passe";
+									return done(null, false, { message: msg});
+								}
+							})
+					
 						}
+						console.log(msg);
+					})
+					.catch(err => {
+						console.log(err);
+						return done(err);
 					});
-				})
-				.catch(err => console.log(err));
-		})
+				}
+		)
 	);
 
 	passport.serializeUser((user, done) => {
