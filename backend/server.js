@@ -29,8 +29,8 @@ const path = require('path');
 //Session 
 app.use(session({
 	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
+	resave: false,
+	saveUninitialized: false
 }));
 
 //Passport moddleware
@@ -75,7 +75,15 @@ app.use('/api',api);
 app.get('/', (req, res) => res.redirect("/login"));
 
 //routing protégée 
-app.get('/protected', ensureAuthentification.ensureAuthentificated, (req, res) => res.sendFile(path.resolve('')));
+//app.get('/protected', ensureAuthentification.ensureAuthentificated, (req, res) => res.sendFile(path.resolve('')));
+app.get('/protected',(req, res, next) => {
+	if(req.isAuthenticated()){
+	  res.redirect('/homepage');
+	}
+	else{
+	  res.redirect('/login');
+	}
+  });
 
 //test rooting
 app.get("/homepage", (req,res) => res.sendFile(path.resolve("./views/homepage.html")));
