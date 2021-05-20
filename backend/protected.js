@@ -32,7 +32,12 @@ router.get('/',(req, res) => {
 router.get('/homepage',(req,res) => {
     //app.set('layout','./homepage');
 	//res.render('homepage');
-	res.render('homepage', { layout: 'homepage' });
+	if(req.isAuthenticated()){
+		res.render('homepage', { layout: 'homepage' });
+	}
+	else{
+	  res.redirect('/login');
+	}
 });
 
 //export protected module
