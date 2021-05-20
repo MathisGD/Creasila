@@ -16,7 +16,7 @@ const router = express.Router();
 const User = require('./model/usersSchema');
 
 //Routing
-//router api home
+//router api root
 router.get('/',(req,res)=>{
 	res.send('api is up')
 });
@@ -80,7 +80,7 @@ router.post('/users/register',(req,res)=>{
 //login
 router.post('/user/login',
 	passport.authenticate('local',{
-		successRedirect: '/homepage',
+		successRedirect: '/',
 		failureRedirect: '/login',
 		failureFlash: true }));
 
@@ -92,4 +92,4 @@ router.get('/user/logout',(req, res)=>{
 });
 
 //export api module
-module.exports = router
+module.exports = router;

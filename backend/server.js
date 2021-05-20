@@ -17,7 +17,6 @@ const path = require('path');
 	//passport
 	const passport = require('passport');
 	require('./passport')(passport);
-	const ensureAuthentification = require('./auth');
 	//json format
 	const bodyParser = require('body-parser');
 	app.use(bodyParser.json());
@@ -58,46 +57,32 @@ mongoose.connect(
 //Rendering ejs
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
-//app.use(express.static(path.join(__dirname, "/../views")));
-//app.set('/views',path.resolve('/../views'));
-//app.engine('html', require('ejs').renderFile);
-
-
-
-
+app.set('view options', { layout: false });
 
 //Routing
+//routing root
+app.get('/',(req,res) => res.redirect('/protected'));
+
+//routing protected
+const protected = require('./protected');
+app.use('/protected',protected);
+
 //routing api
 const api = require('./api');
 app.use('/api',api);
 
-//routing initial à modifier en fonction du log
-app.get('/', (req, res) => res.redirect("/login"));
-
-//routing protégée 
-//app.get('/protected', ensureAuthentification.ensureAuthentificated, (req, res) => res.sendFile(path.resolve('')));
-app.get('/protected',(req, res, next) => {
-	if(req.isAuthenticated()){
-	  res.redirect('/homepage');
-	}
-	else{
-	  res.redirect('/login');
-	}
-  });
-
-//test rooting
-app.get("/homepage", (req,res) => res.sendFile(path.resolve("./views/homepage.html")));
-
 //register page
 app.get('/register', (req,res)=> {
-	app.set('layout','./signup');
-	res.render('signup');
+	//app.set('layout','./signup');
+	//res.render('signup');
+	res.render('signup', { layout: 'signup' });
 });
 
 //login page
 app.get('/login', (req,res) => {
-	app.set('layout','./login');
-	res.render('login');
+	//app.set('layout','./login');
+	//res.render('login');
+	res.render('login', { layout: 'login' });
 });
 
 //rooting css
