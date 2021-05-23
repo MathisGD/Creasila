@@ -3,6 +3,11 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
+require('dotenv').config();
+//Mail
+const nodemailer = require('nodemailer');
+//token
+const jwt = require('jsonwebtoken');
 //Middlewares 
 	//passport
 	const passport = require('passport');
@@ -60,10 +65,27 @@ router.post('/users/register',(req,res)=>{
 							if(err) throw err;
 							newUser.mdp = hash;
 							newUser.save()
-								.then(user => {
-									console.log(newUser);
-									req.flash('success_msg','Ton compte a été crée');
+								.then(async user => {
+									await console.log(user);
+									await req.flash('success_msg','Ton compte a été crée, verifies ton adresse mail');
 									res.redirect("/login");	
+									jwt.sign({ data: user.id }, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 * 24 },(err,token)=>{ 
+										if(err){
+											req.flash('error_msg',err);
+											console.log(err);
+										}else{
+											//envoie mail		
+											transporter.sendMail(message(user.mail,token), (error, info)=>{
+												if(error){
+													req.flash('error_msg',error);
+													return console.log(error);
+												}else{
+													console.log('Message de confirmation envoyé à '+user.first);
+												}
+											});
+										}							
+									});
+									
 								})
 								.catch(err => { 
 									console.log(err);
@@ -90,6 +112,66 @@ router.get('/user/logout',(req, res)=>{
 	req.flash('success_msg','Tu es déconnecté.e');
 	res.redirect('/login');
 });
+
+//confirmation
+router.get('/confirmation/:token', async (req,res)=>{
+	try{
+		const user_id=jwt.verify(req.params.token,process.env.TOKEN_SECRET).data;
+		await User.findById(user_id)
+		.then(user =>{
+			user.confirmation = true;
+			user.save()
+			.then(user => {
+				console.log('compte de '+user.first+' est validé');
+				req.flash('success_msg',"Votre compte est validé, vous pouvez vous connecter");
+			})
+			.catch(err => { 
+				console.log('erreur update confirmation: '+err);
+				req.flash('error_msg',err);
+			});
+		})
+		.catch(err => { 
+			console.log('erreur finding confirmation: '+err);
+			req.flash('error_msg',err);
+		});
+	} catch (err) {
+		console.log(err);
+		req.flash('error_msg',err);
+	}
+	res.redirect('/login');
+});
+
+//Mailing (help: https://ourcodeworld.com/articles/read/264/how-to-send-an-email-gmail-outlook-and-zoho-using-nodemailer-in-node-js)
+let transporter = nodemailer.createTransport({
+	host: process.env.M_HOST,
+	secureConnection: false,
+	port: process.env.M_PORT,
+	tls: {
+		ciphers:'SSLv3'
+	 },
+	auth: {
+	  user: process.env.M_USER,
+	  pass: process.env.M_PASS
+	}
+  });
+//verify connection configuration
+transporter.verify((error, success)=>{
+	if (error) {
+	  console.log(error);
+	} else {
+	  console.log("Server mail est lancé");
+	}
+});
+//message
+function message(user_adress,user_token) {
+	const message = {
+		from: '"Creasila" <'+process.env.M_USER+'>',
+    	to: user_adress,
+   		subject: 'Confirmation de compte',
+   		html: '<b>Bonjour et bienvenu chez Creasila</b><br>Veuillez cliquer sur le lien pour valider votre compte : <br><a href="'+process.env.APP_URL+'/api/confirmation/'+user_token+'">Confirmer</a>'
+	};
+	return message;
+}
 
 //export api module
 module.exports = router;

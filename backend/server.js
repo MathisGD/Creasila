@@ -2,12 +2,13 @@
 //Server
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.APP_PORT || 8000;
+require('dotenv').config();
 //Rendering
 const expressLayouts = require('express-ejs-layouts');
 //Database
 const mongoose = require('mongoose');
-const url = 'mongodb://localhost:27017/creasila';
+const url = process.env.DB_URL;
 //Routing
 const path = require('path');
 //Middlewares 
@@ -27,7 +28,7 @@ const path = require('path');
 
 //Session 
 app.use(session({
-	secret: 'secret',
+	secret: process.env.SESSION_SECRET,
 	resave: false,
 	saveUninitialized: false
 }));

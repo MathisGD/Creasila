@@ -27,8 +27,13 @@ module.exports = function(passport) {
 							bcrypt.compare(mdp, user.mdp, (err,isMatch) => {
 								if(err) throw err;
 								if(isMatch) {
-									msg += "Utilisateur connecté, bienvenu "+user.first;
-									return done(null, user, { message : msg});
+									if(user.confirmation){
+										msg += "Utilisateur connecté, bienvenu "+user.first;
+										return done(null, user, { message : msg});
+									}else{
+										msg += user.first+" , vous devez valider votre adresse mail";
+										return done(null, false, { message: msg});
+									}
 								} else {
 									msg += "Mauvais mot de passe";
 									return done(null, false, { message: msg});
