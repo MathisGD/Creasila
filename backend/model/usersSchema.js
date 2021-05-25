@@ -18,6 +18,9 @@ const usersSchema = mongoose.Schema({
     	default: Date.now},
 	confirmation: {
 		type: Boolean,
+		default: false},
+	admin: {
+		type: Boolean,
 		default: false}
 });
 

@@ -62,11 +62,27 @@ app.set('view options', { layout: false });
 
 //Routing
 //routing root
-app.get('/',(req,res) => res.redirect('/protected'));
+app.get('/',(req,res) => {
+	if(req.isAuthenticated()){
+		res.redirect('/homepage');
+	}
+	else{
+	  res.redirect('/login');
+	}
+});
 
-//routing protected
-const protected = require('./protected');
-app.use('/protected',protected);
+//routing homepage
+app.get('/homepage',(req,res) => {
+    //app.set('layout','./homepage');
+	//res.render('homepage');
+	if(req.isAuthenticated()){
+		res.render('homepage', { layout: 'homepage' });
+	}
+	else{
+	  res.redirect('/login');
+	}
+});
+
 
 //routing api
 const api = require('./api');

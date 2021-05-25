@@ -19,6 +19,8 @@ const jwt = require('jsonwebtoken');
 
 //Schema mongoDB
 const User = require('./model/usersSchema');
+const Formation=require('./model/formationsSchema');
+const { ConnectionStates } = require('mongoose');
 
 //Routing
 //router api root
@@ -30,7 +32,7 @@ router.get('/',(req,res)=>{
 //register
 router.post('/users/register',(req,res)=>{
 	console.log(req.body);
-	const { first, last, mail, mdp } = req.body;
+	const { first, last, mail, mdp} = req.body;
 	let errors = [];
 
 	if(!first || !last || !mail || !mdp){
@@ -111,6 +113,61 @@ router.get('/user/logout',(req, res)=>{
 	req.logout();
 	req.flash('success_msg','Tu es déconnecté.e');
 	res.redirect('/login');
+});
+
+//formations
+router.get('/formation',(req, res)=>{
+	Formation.find((err, formations)=> {
+		if (err){
+			console.log(err);
+			res.send(err);
+
+		}else{
+			res.send(formations);
+		}
+	});
+});
+
+//add/update formations
+router.post('/formation',(req,res)=>{
+	if(req.isAuthenticated()){
+		if(req.user.admin){
+			const { name, url, description} = req.body;
+			const new_formation = new Formation({name, url, description});
+			console.log(new_formation);
+
+			if(!new_formation.name){
+				res.send('Il faut à minima un nom');
+				console.log('Il faut à minima un nom');
+			} else {
+				Formation.findOne({ name: new_formation.name })
+					.then(old_formation => {
+						if(old_formation){
+							for (i in new_formation){
+								if (!new_formation.i){
+									new_formation.i=old_formation.i;
+								}
+							}
+							old_formation.remove();
+						}
+						new_formation.save()
+						.then(formation_saved => {
+							res.send('La formation '+formation_saved.name+' a été enregistrée sous la forme suivante :\n'+formation_saved);
+							console.log(formation_saved);
+						})		
+						.catch(err => {
+							console.log(err);
+							res.send(err);
+						});
+					});
+				}
+			}else{
+				req.flash("error_msg","Vous devez être admin pour interragir avec les formations")
+				res.redirect('/login');
+			}
+	}else{
+	  res.redirect('/login');
+	}
 });
 
 //confirmation
