@@ -15,7 +15,11 @@ Elle souhaite proposer à ses clients une plateforme de Digital Learning moderne
 - `brew install mongodb-community@4.4`
 - `brew services start mongodb-community@4.4`
 
-- `npm run dev`
 - `touch .env`
 
 - Mettre les clés dedans 
+
+### Run the app 
+
+- `cd backend`
+- `npm run dev`
