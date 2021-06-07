@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 const url = process.env.DB_URL;
 //Routing
 const path = require('path');
+app.use( express.static( "../img" ) );
 //Middlewares 
 	//sessions 
 	const flash = require('connect-flash');
@@ -76,7 +77,7 @@ app.get('/homepage',(req,res) => {
     //app.set('layout','./homepage');
 	//res.render('homepage');
 	if(req.isAuthenticated()){
-		res.render('homepage', { layout: 'homepage' });
+		res.render('homepage', { layout: 'homepage', user:req.user });
 	}
 	else{
 	  res.redirect('/login');

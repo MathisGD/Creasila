@@ -19,6 +19,9 @@ const usersSchema = mongoose.Schema({
 	confirmation: {
 		type: Boolean,
 		default: false},
+	img: {
+		type: String,
+		default: '/profilepic.jpeg'},
 	admin: {
 		type: Boolean,
 		default: false}
