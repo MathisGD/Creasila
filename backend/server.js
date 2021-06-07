@@ -84,6 +84,12 @@ app.get('/homepage',(req,res) => {
 	}
 });
 
+//routing video
+app.get('/video', (req,res)=> {
+	//app.set('layout','./signup');
+	//res.render('signup');
+	res.sendFile(path.resolve('./views/video.html'));
+});
 
 //routing api
 const api = require('./api');
