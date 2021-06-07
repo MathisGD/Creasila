@@ -34,9 +34,18 @@
         </div>
 
         <ul class="navbar-nav mr-auto profilepic">
-          <button type="submit" style="border:none; width: 40 imp !important ">
-            <img src=<%= user.img %> alt="" height="40" style="border-radius:50%;">
-          </button>
+          <li class="nav-item">
+            <button type="submit" style="border:none; width: 40 imp !important ">
+              <img src=<%= user.img %> alt="" height="40" style="border-radius:50%;">
+            </button>
+          </li>
+          <li class="nav-item">
+            <form action="/api/user/logout" method="get">
+              <button type="submit" action="" class="btn btn-primary">
+               Déconnexion
+              </button>
+            </form>
+          </li>
         </ul>
       </div>
     </nav>
