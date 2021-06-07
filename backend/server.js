@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 const url = process.env.DB_URL;
 //Routing
 const path = require('path');
-app.use( express.static( "../img" ) );
+app.use( express.static( "../public" ) );
 //Middlewares 
 	//sessions 
 	const flash = require('connect-flash');
